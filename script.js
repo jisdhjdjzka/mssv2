@@ -82,6 +82,17 @@ if (toolsCount) toolsCount.textContent = EXECUTORS.length + EXTERNALS.length;
   });
 })();
 
+/* Hero "works with" logo strip */
+(function worksStrip() {
+  const wrap = document.getElementById("worksLogos");
+  if (!wrap) return;
+  [...EXECUTORS, ...EXTERNALS].forEach((item) => {
+    const el = logoEl(item, "wl", "wl-fb");
+    el.title = item.name;
+    wrap.appendChild(el);
+  });
+})();
+
 /* Live Discord counts (real, via invite API) */
 (function discord() {
   const member = document.getElementById("memberCount");
@@ -125,6 +136,25 @@ if (toolsCount) toolsCount.textContent = EXECUTORS.length + EXTERNALS.length;
   const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
   onScroll();
   addEventListener("scroll", onScroll, { passive: true });
+})();
+
+/* Active nav link (scroll-spy) */
+(function scrollSpy() {
+  const links = {};
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach((a) => {
+    const id = a.getAttribute("href").slice(1);
+    if (id && document.getElementById(id)) links[id] = a;
+  });
+  const ids = Object.keys(links);
+  if (!ids.length) return;
+  const spy = new IntersectionObserver((ents) => {
+    ents.forEach((e) => {
+      if (e.isIntersecting) {
+        ids.forEach((id) => links[id].classList.toggle("active", id === e.target.id));
+      }
+    });
+  }, { rootMargin: "-50% 0px -50% 0px" });
+  ids.forEach((id) => spy.observe(document.getElementById(id)));
 })();
 
 /* Footer year */
