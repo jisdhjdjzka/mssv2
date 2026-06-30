@@ -10,9 +10,12 @@ const DISCORD_INVITE_CODE = "TnHFe95MnW";
 const EXECUTORS = [
   { name: "Potassium", logo: "assets/logos/potassium.png" },
   { name: "Volt",      logo: "assets/logos/volt.png" },
+  { name: "Cosmic",    logo: "assets/logos/cosmic_logo.png" },
+  { name: "Synapse Z", logo: "assets/logos/synz.webp" },
 ];
 const EXTERNALS = [
   { name: "Matcha", logo: "assets/logos/matcha.png" },
+  { name: "Matrix", logo: "assets/logos/Matrix.png" },
 ];
 // ----------------
 
@@ -58,6 +61,10 @@ function fill(gridId, countId, list) {
 }
 fill("executorsGrid", "execCount", EXECUTORS);
 fill("externalsGrid", "extCount", EXTERNALS);
+
+/* Tools-supported stat (dynamic) */
+const toolsCount = document.getElementById("toolsCount");
+if (toolsCount) toolsCount.textContent = EXECUTORS.length + EXTERNALS.length;
 
 /* Hero client visual — list supported tools as rows */
 (function clientVisual() {
