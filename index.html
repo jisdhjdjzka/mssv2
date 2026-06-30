@@ -4,22 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="MSS Keygen — a simple key generator for the executors and externals our community uses." />
+  <meta name="theme-color" content="#0a0c10" />
   <title>MSS Keygen</title>
+
+  <!-- icons -->
+  <link rel="icon" href="assets/logos/main-logo.png" />
+  <link rel="apple-touch-icon" href="assets/logos/main-logo.png" />
+
+  <!-- link previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MSS Keygen" />
+  <meta property="og:description" content="A simple key generator for the executors and externals our community uses." />
+  <meta property="og:image" content="assets/logos/main-logo.png" />
+  <meta name="twitter:card" content="summary" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="nav">
-    <a href="#top" class="logo logo-img-wrap" aria-label="MSS Keygen">
-      <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
-    </a>
-    <nav class="nav-links">
-      <a href="#supported">Supported</a>
-      <a href="#download">Download</a>
-      <a href="#" id="navDiscord" class="nav-discord">Discord</a>
-    </nav>
+  <a href="#top" class="skip-link">Skip to content</a>
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo logo-img-wrap" aria-label="MSS Keygen">
+        <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
+      </a>
+      <nav class="nav-links">
+        <a href="#supported">Supported</a>
+        <a href="#download">Download</a>
+        <a href="#" id="navDiscord" class="nav-discord">Discord</a>
+      </nav>
+    </div>
   </header>
 
   <main id="top">
@@ -73,11 +89,17 @@
       <div class="download-card">
         <div class="download-info">
           <h2>Download the client</h2>
-          <p>One small Windows executable. No installer.</p>
+          <p>A small download for Windows. No installer.</p>
           <span class="download-meta">MSS.zip · Windows 10/11 · ~4 MB</span>
         </div>
         <a href="https://file.garden/aizQJ_2aR3u8INCz/MSS.zip" class="btn btn-primary btn-lg" download>Download</a>
       </div>
+
+      <ol class="steps">
+        <li><span>1</span> Download <code>MSS.zip</code> and extract it.</li>
+        <li><span>2</span> Run the client and choose your tool.</li>
+        <li><span>3</span> Copy your key and you're set.</li>
+      </ol>
     </section>
 
     <!-- Discord -->

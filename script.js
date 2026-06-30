@@ -101,3 +101,12 @@ fill("externalsGrid", "extCount", EXTERNALS);
 
 /* Footer year */
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Subtle border on nav once scrolled */
+(function navBorder() {
+  const nav = document.getElementById("nav");
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
+  onScroll();
+  addEventListener("scroll", onScroll, { passive: true });
+})();
