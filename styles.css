@@ -1,0 +1,142 @@
+/* ============================================================
+   MSS Keygen — clean, restrained. Black + light blue.
+   ============================================================ */
+
+:root {
+  --bg: #0a0c10;
+  --bg-2: #10141b;
+  --line: #20262f;
+  --text: #eef2f6;
+  --muted: #9aa6b4;
+  --blue: #4cc2ff;
+  --blue-2: #7ad4ff;
+  --blue-deep: #1f9fe0;
+  --green: #56d98a;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --maxw: 1080px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* one soft, static glow — no animation, no particles */
+  background-image: radial-gradient(60% 50% at 50% -10%, rgba(76,194,255,0.10), transparent 70%);
+  background-repeat: no-repeat;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--blue); color: #04121c; }
+
+/* ---- nav ---- */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: var(--maxw); margin: 0 auto; padding: 22px 24px;
+}
+.nav-links { display: flex; align-items: center; gap: 28px; font-size: 0.95rem; }
+.nav-links a { color: var(--muted); transition: color 0.15s; }
+.nav-links a:hover { color: var(--text); }
+.nav-discord { color: var(--blue) !important; font-weight: 600; }
+
+/* logo image — portrait source, wordmark centred on black; crop to wordmark */
+.logo-img-wrap { display: inline-flex; align-items: center; overflow: hidden; height: 40px; width: 66px; }
+.logo-img-wrap.small { height: 30px; width: 50px; opacity: 0.85; }
+.logo-img-main { width: 100%; height: 100%; object-fit: cover; object-position: center 56%; display: block; }
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 0.98rem;
+  border: 1px solid transparent; cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.btn-lg { padding: 14px 30px; font-size: 1.05rem; }
+.btn-primary { background: var(--blue); color: #04121c; }
+.btn-primary:hover { background: var(--blue-2); }
+.btn-secondary { border-color: var(--line); color: var(--text); background: var(--bg-2); }
+.btn-secondary:hover { border-color: var(--blue); }
+
+/* ---- hero ---- */
+.hero {
+  max-width: var(--maxw); margin: 0 auto; padding: 70px 24px 80px;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center;
+}
+.hero-text h1 { font-size: clamp(2.6rem, 6vw, 4rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 18px; }
+.hero-text p { color: var(--muted); font-size: 1.12rem; max-width: 440px; margin-bottom: 28px; }
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-live { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-size: 0.9rem; color: var(--muted); }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+/* terminal */
+.hero-term { background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.term-bar { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+.term-dots { display: flex; gap: 6px; }
+.term-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); display: block; }
+.term-dots i:first-child { background: var(--blue-deep); }
+.term-name { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.term-body { font-family: var(--mono); font-size: 0.86rem; line-height: 1.8; color: var(--muted); padding: 18px 18px 20px; white-space: pre-wrap; min-height: 150px; }
+.term-body .b { color: var(--blue-2); }
+.term-body .g { color: var(--green); }
+
+/* ---- section heads ---- */
+.sec-head { margin-bottom: 34px; }
+.sec-head h2 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+.sec-head p { color: var(--muted); }
+
+/* ---- supported ---- */
+.supported { max-width: var(--maxw); margin: 0 auto; padding: 50px 24px; }
+.support-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.support-group h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 18px; color: var(--text); }
+.support-group h3 span { color: var(--muted); font-weight: 400; font-family: var(--mono); font-size: 0.85rem; }
+.tiles { display: flex; flex-wrap: wrap; gap: 12px; }
+.tile {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--bg-2); transition: border-color 0.15s, transform 0.15s;
+  flex: 1 1 200px; max-width: 280px;
+}
+.tile:hover { border-color: var(--blue); transform: translateY(-2px); }
+.tile-logo, .tile-fallback { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.tile-fallback { display: grid; place-items: center; font-weight: 700; font-size: 1.1rem; color: #04121c; background: linear-gradient(135deg, var(--blue-2), var(--blue-deep)); }
+.tile-name { font-weight: 600; font-size: 1.02rem; }
+.tile-sub { font-size: 0.78rem; color: var(--green); display: block; margin-top: 2px; }
+
+/* ---- download ---- */
+.download { max-width: var(--maxw); margin: 0 auto; padding: 50px 24px; }
+.download-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  border: 1px solid var(--line); border-radius: 16px; padding: 36px;
+  background: linear-gradient(135deg, rgba(76,194,255,0.06), transparent 60%), var(--bg-2);
+}
+.download-info h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 6px; }
+.download-info p { color: var(--muted); margin-bottom: 10px; }
+.download-meta { font-family: var(--mono); font-size: 0.82rem; color: var(--blue-2); }
+
+/* ---- discord ---- */
+.discord { max-width: 640px; margin: 30px auto; padding: 60px 24px 80px; text-align: center; }
+.discord h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
+.discord p { color: var(--muted); }
+.discord-count { font-family: var(--mono); font-size: 0.88rem; color: var(--blue-2); margin: 16px 0 24px; min-height: 1.2em; }
+
+/* ---- footer ---- */
+.footer {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  max-width: var(--maxw); margin: 0 auto; padding: 28px 24px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 0.88rem;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 40px; }
+  .support-groups { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 520px) {
+  .nav-links { gap: 18px; }
+  .tile { max-width: none; }
+  .download-card { flex-direction: column; align-items: flex-start; }
+  .btn { width: 100%; }
+}
