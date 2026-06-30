@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="MSS Keygen — a simple key generator for the executors and externals our community uses." />
-  <meta name="theme-color" content="#0a0c10" />
+  <meta name="description" content="MSS Keygen — instant keys for the executors and externals our community uses. Free, clean, always updated." />
+  <meta name="theme-color" content="#000000" />
   <title>MSS Keygen</title>
 
-  <!-- icons -->
   <link rel="icon" href="assets/logos/main-logo.png" />
   <link rel="apple-touch-icon" href="assets/logos/main-logo.png" />
 
-  <!-- link previews -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="MSS Keygen" />
-  <meta property="og:description" content="A simple key generator for the executors and externals our community uses." />
+  <meta property="og:description" content="Instant keys for the executors and externals our community uses. Free and always updated." />
   <meta property="og:image" content="assets/logos/main-logo.png" />
   <meta name="twitter:card" content="summary" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
+  <div class="glow-top" aria-hidden="true"></div>
+
+  <!-- Nav -->
   <header class="nav" id="nav">
     <div class="nav-inner">
       <a href="#top" class="logo logo-img-wrap" aria-label="MSS Keygen">
         <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
       </a>
       <nav class="nav-links">
+        <a href="#why">Why MSS</a>
         <a href="#supported">Supported</a>
         <a href="#download">Download</a>
         <a href="#" id="navDiscord" class="nav-discord">Discord</a>
@@ -40,44 +42,96 @@
 
   <main id="top">
     <!-- Hero -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1>MSS Keygen</h1>
-        <p>
-          A straightforward key generator for the executors and externals our
-          community actually uses. Download it, pick your tool, get your key.
-        </p>
-        <div class="hero-buttons">
-          <a href="#download" class="btn btn-primary">Download</a>
-          <a href="#" id="heroDiscord" class="btn btn-secondary">Join Discord</a>
-        </div>
-        <p class="hero-live" id="heroLive">
-          <span class="live-dot"></span> connecting to Discord…
-        </p>
+    <section class="hero reveal">
+      <span class="pill"><span class="live-dot"></span> Free · keyless · always updated</span>
+      <h1>Keys for your tools.<br /><span class="grad">In seconds.</span></h1>
+      <p class="hero-sub">
+        MSS Keygen generates working keys for the executors and externals our
+        community uses. No clutter, no paywall — download it and you're set.
+      </p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn btn-primary btn-lg">Download</a>
+        <a href="#" id="heroDiscord" class="btn btn-secondary btn-lg">Join Discord</a>
       </div>
 
-      <div class="hero-term">
-        <div class="term-bar">
-          <span class="term-dots"><i></i><i></i><i></i></span>
-          <span class="term-name">mss_keygen.exe</span>
+      <!-- client visual -->
+      <div class="client" aria-hidden="true">
+        <div class="client-bar">
+          <span class="client-dots"><i></i><i></i><i></i></span>
+          <span class="client-title">MSS Keygen</span>
+          <span class="client-status"><span class="live-dot"></span> online</span>
         </div>
-        <pre class="term-body" id="termBody"></pre>
+        <div class="client-body">
+          <div class="client-side">
+            <span class="cs-item active">Dashboard</span>
+            <span class="cs-item">Generate</span>
+            <span class="cs-item">Tools</span>
+            <span class="cs-item">Settings</span>
+          </div>
+          <div class="client-main" id="clientMain"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="why" id="why">
+      <span class="eyebrow">Why MSS</span>
+      <h2 class="sec-title">Built to be simple.</h2>
+      <p class="sec-lead">No keys to grind, no surveys, no bloat. Just the tools you want, ready to go.</p>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 4 14 11 14 10 22 20 10 13 10 13 2"/></svg>
+          </div>
+          <h3>Instant keys</h3>
+          <p>Pick your tool and get a working key in seconds. No waiting rooms.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Clean &amp; keyless</h3>
+          <p>A single small download. No ad walls, no link shorteners, no junk.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+          </div>
+          <h3>Always updated</h3>
+          <p>Support follows new tool releases, so your keys keep working.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats reveal">
+      <div class="stat">
+        <b data-count="3">0</b>
+        <span>tools supported</span>
+      </div>
+      <div class="stat">
+        <b id="memberCount">…</b>
+        <span>community members</span>
+      </div>
+      <div class="stat">
+        <b>Free</b>
+        <span>no subscriptions, ever</span>
       </div>
     </section>
 
     <!-- Supported -->
     <section class="supported" id="supported">
-      <div class="sec-head">
-        <h2>Supported tools</h2>
-        <p>Everything here is actively supported. More get added as they release.</p>
-      </div>
+      <span class="eyebrow">Compatibility</span>
+      <h2 class="sec-title">Supported tools.</h2>
+      <p class="sec-lead">Everything here is actively supported. More get added as they release.</p>
 
       <div class="support-groups">
-        <div class="support-group">
+        <div class="support-group reveal">
           <h3>Executors <span id="execCount"></span></h3>
           <div class="tiles" id="executorsGrid"></div>
         </div>
-        <div class="support-group">
+        <div class="support-group reveal">
           <h3>Externals <span id="extCount"></span></h3>
           <div class="tiles" id="externalsGrid"></div>
         </div>
@@ -86,13 +140,19 @@
 
     <!-- Download -->
     <section class="download" id="download">
-      <div class="download-card">
-        <div class="download-info">
-          <h2>Download the client</h2>
-          <p>A small download for Windows. No installer.</p>
-          <span class="download-meta">MSS.zip · Windows 10/11 · ~4 MB</span>
-        </div>
-        <a href="https://file.garden/aizQJ_2aR3u8INCz/MSS.zip" class="btn btn-primary btn-lg" download>Download</a>
+      <span class="eyebrow">Get it</span>
+      <h2 class="sec-title">One download. Free.</h2>
+
+      <div class="dl-card reveal">
+        <div class="dl-price">Free</div>
+        <ul class="dl-list">
+          <li>All supported tools</li>
+          <li>Every future update</li>
+          <li>Instant, no key grind</li>
+          <li>Windows 10 / 11</li>
+        </ul>
+        <a href="https://file.garden/aizQJ_2aR3u8INCz/MSS.zip" class="btn btn-primary btn-lg dl-btn" download>Download MSS.zip</a>
+        <span class="dl-meta">MSS.zip · ~4 MB · extract and run</span>
       </div>
 
       <ol class="steps">
@@ -103,19 +163,28 @@
     </section>
 
     <!-- Discord -->
-    <section class="discord" id="discord">
-      <h2>Join the Discord</h2>
-      <p>Support, updates, and announcements when new tools are added.</p>
+    <section class="discord reveal" id="discord">
+      <span class="eyebrow">Community</span>
+      <h2 class="sec-title">Join the Discord.</h2>
+      <p class="sec-lead">Support, updates, and announcements whenever new tools are added.</p>
       <p class="discord-count" id="discordCount"></p>
       <a href="#" id="ctaDiscord" class="btn btn-primary btn-lg">Join Discord</a>
     </section>
   </main>
 
   <footer class="footer">
-    <span class="logo logo-img-wrap small" aria-label="MSS Keygen">
-      <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
-    </span>
-    <span>© <span id="year"></span> MSS Keygen</span>
+    <div class="footer-inner">
+      <span class="logo logo-img-wrap small" aria-label="MSS Keygen">
+        <img src="assets/logos/main-logo.png" alt="MSS Keygen" class="logo-img-main" />
+      </span>
+      <div class="footer-links">
+        <a href="#why">Why MSS</a>
+        <a href="#supported">Supported</a>
+        <a href="#download">Download</a>
+        <a href="#" id="footDiscord">Discord</a>
+      </div>
+      <span class="footer-copy">© <span id="year"></span> MSS Keygen</span>
+    </div>
   </footer>
 
   <script src="script.js"></script>
