@@ -6,7 +6,6 @@
 const DISCORD_URL = "https://discord.gg/keygen";
 const DISCORD_INVITE_CODE = "keygen";
 const VERSION = "v2.4.1";
-const BRIDGE_URL = "http://127.0.0.1:47821";
 
 // Add a PNG to assets/logos/ matching the path, or a letter badge shows instead.
 // Set `new: true` to show a "New" badge on a tool tile.
@@ -29,6 +28,24 @@ const UPDATES = [
 // ----------------
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Scroll reveal */
+(function scrollReveal() {
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+  if (prefersReducedMotion) {
+    els.forEach((el) => el.classList.add("visible"));
+    return;
+  }
+  const io = new IntersectionObserver((ents, o) => {
+    ents.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("visible");
+      o.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  els.forEach((el) => io.observe(el));
+})();
 
 /* Toast notifications */
 function showToast(message, type = "success") {
@@ -440,147 +457,6 @@ function animateCounter(el, target, duration = 1200) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
     });
   });
-})();
-
-/* Connect — synced with MSS Keygen exe via local bridge */
-(function connectBridge() {
-  const RING_LEN = 113.1;
-  const card = document.querySelector(".connect-card");
-  const sync = document.getElementById("connectSync");
-  const dot = document.getElementById("connectDot");
-  const ringFill = document.getElementById("connectRingFill");
-  const label = document.getElementById("connectStatusLabel");
-  const sub = document.getElementById("connectStatusSub");
-  const btn = document.getElementById("connectBtn");
-  const hint = document.getElementById("connectHint");
-  if (!dot || !label || !sub || !btn) return;
-
-  let detected = false;
-  let linked = false;
-  let pairing = false;
-  let pollTimer = null;
-
-  function setRingPct(pct) {
-    if (!ringFill) return;
-    const offset = RING_LEN * (1 - Math.min(100, Math.max(0, pct)) / 100);
-    ringFill.style.strokeDashoffset = String(offset);
-  }
-
-  function applyBridge(data) {
-    if (!data) return;
-    if (data.pairing) {
-      pairing = true;
-      if (card) card.classList.add("is-pairing");
-      if (sync) sync.className = "connect-sync pairing";
-      dot.className = "connect-dot";
-      label.textContent = "Syncing with client…";
-      sub.textContent = data.stepLabel || "pairing in progress";
-      btn.disabled = true;
-      btn.textContent = "Syncing…";
-      setRingPct(data.pct ?? 0);
-      return;
-    }
-
-    pairing = false;
-    if (card) card.classList.remove("is-pairing");
-
-    if (data.connected) {
-      linked = true;
-      if (sync) sync.className = "connect-sync connected";
-      dot.className = "connect-dot connected";
-      setRingPct(100);
-      label.textContent = "Connected";
-      sub.textContent = "Your client is unlocked — you can patch and generate keys";
-      btn.classList.add("connected");
-      btn.disabled = true;
-      btn.textContent = "Connected";
-      if (hint) hint.textContent = "Return to MSS Keygen to use the app.";
-      stopFastPoll();
-      return;
-    }
-
-    btn.classList.remove("connected");
-    setRingPct(0);
-    if (sync) sync.className = "connect-sync";
-    detected = data.running === true;
-    dot.className = `connect-dot ${detected ? "detected" : "offline"}`;
-
-    if (detected) {
-      label.textContent = "MSS Keygen detected";
-      sub.textContent = "Client is running on this device — ready to pair";
-      btn.disabled = false;
-      btn.textContent = "Connect";
-      if (hint) hint.textContent = "Click Connect to unlock patching in the client.";
-    } else {
-      label.textContent = "MSS Keygen not detected";
-      sub.textContent = "Download and run the client on this PC, then try again";
-      btn.disabled = true;
-      btn.textContent = "Connect";
-      if (hint) hint.textContent = "No local client found. Open MSS Keygen.exe first.";
-    }
-  }
-
-  async function fetchStatus() {
-    const res = await fetch(`${BRIDGE_URL}/status`, {
-      method: "GET",
-      headers: { Accept: "application/json" },
-      cache: "no-store",
-    });
-    if (!res.ok) throw new Error("status " + res.status);
-    return res.json();
-  }
-
-  async function poll() {
-    try {
-      const data = await fetchStatus();
-      applyBridge(data);
-    } catch {
-      detected = false;
-      pairing = false;
-      if (!linked) {
-        if (sync) sync.className = "connect-sync";
-        dot.className = "connect-dot offline";
-        label.textContent = "MSS Keygen not detected";
-        sub.textContent = "Download and run the client on this PC, then try again";
-        btn.disabled = true;
-      }
-    }
-  }
-
-  function startFastPoll() {
-    stopFastPoll();
-    pollTimer = setInterval(poll, 120);
-  }
-
-  function stopFastPoll() {
-    if (pollTimer) {
-      clearInterval(pollTimer);
-      pollTimer = null;
-    }
-  }
-
-  btn.addEventListener("click", async () => {
-    if (!detected || linked || pairing) return;
-    try {
-      const res = await fetch(`${BRIDGE_URL}/connect`, {
-        method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: "{}",
-      });
-      if (!res.ok) throw new Error("connect failed");
-      applyBridge(await res.json());
-      startFastPoll();
-    } catch {
-      showToast("Could not connect — is MSS Keygen still open?", "info");
-      poll();
-    }
-  });
-
-  label.textContent = "Checking for MSS Keygen…";
-  sub.textContent = "Looking for the client on this device";
-  dot.className = "connect-dot";
-  poll();
-  setInterval(() => { if (!linked && !pairing) poll(); }, 2500);
 })();
 
 /* Footer year */

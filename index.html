@@ -40,7 +40,6 @@
         <a href="#why">Why MSS</a>
         <a href="#supported">Supported</a>
         <a href="#download">Download</a>
-        <a href="#connect">Connect</a>
         <a href="#faq">FAQ</a>
         <a href="#" id="navDiscord" class="nav-discord">Discord</a>
         <a href="#download" class="btn btn-primary btn-nav">Download</a>
@@ -54,11 +53,15 @@
   <main id="top">
     <!-- Hero -->
     <section class="hero">
-      <p class="hero-kicker">Free · Windows 10/11</p>
+      <div class="hero-kicker">
+        <span class="hero-pill accent">Free forever</span>
+        <span class="hero-pill">Windows 10 / 11</span>
+        <span class="hero-pill">No installer</span>
+      </div>
       <h1>Keys for your tools, without the hassle.</h1>
       <p class="hero-sub">
         MSS Keygen covers the executors and externals people actually use.
-        Download the client, connect from this page, grab your key.
+        Download the zip, run the setup, and grab your key.
       </p>
       <div class="hero-buttons">
         <a href="#download" class="btn btn-primary btn-lg">Download</a>
@@ -91,26 +94,26 @@
     </section>
 
     <!-- Why -->
-    <section class="why" id="why">
+    <section class="why reveal" id="why">
       <h2 class="sec-title">Why people use it</h2>
       <p class="sec-lead">Small download, no ads, no account. Pick a tool and get a key.</p>
 
       <div class="cards">
-        <article class="card">
+        <article class="card reveal reveal-delay-1">
           <div class="card-ic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 4 14 11 14 10 22 20 10 13 10 13 2"/></svg>
           </div>
           <h3>Instant keys</h3>
           <p>Pick your tool and get a working key in seconds. No waiting rooms.</p>
         </article>
-        <article class="card">
+        <article class="card reveal reveal-delay-2">
           <div class="card-ic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Clean &amp; keyless</h3>
           <p>A single small download. No ad walls, no link shorteners, no junk.</p>
         </article>
-        <article class="card">
+        <article class="card reveal reveal-delay-3">
           <div class="card-ic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
           </div>
@@ -122,7 +125,7 @@
     </section>
 
     <!-- Stats -->
-    <section class="stats">
+    <section class="stats reveal">
       <div class="stat">
         <b id="toolsCount">…</b>
         <span>tools supported</span>
@@ -138,7 +141,7 @@
     </section>
 
     <!-- Supported -->
-    <section class="supported" id="supported">
+    <section class="supported reveal" id="supported">
       <h2 class="sec-title">Supported tools</h2>
       <p class="sec-lead">Executors and externals we keep updated. New ones get added when they drop.</p>
 
@@ -153,6 +156,7 @@
         <input type="search" id="toolSearch" class="tool-search-input" placeholder="Search tools…" autocomplete="off" aria-label="Search supported tools" />
         <button class="tool-search-clear" id="toolSearchClear" type="button" hidden aria-label="Clear search">×</button>
       </div>
+      <p class="tool-search-hint">Press <kbd>/</kbd> anywhere to jump here and search</p>
       <p class="tool-search-empty" id="toolSearchEmpty" hidden>No tools match your search.</p>
 
       <div class="support-groups">
@@ -168,15 +172,15 @@
     </section>
 
     <!-- Updates -->
-    <section class="updates" id="updates">
+    <section class="updates reveal" id="updates">
       <h2 class="sec-title">Recent updates</h2>
       <div class="update-list" id="updateList"></div>
     </section>
 
     <!-- Download -->
-    <section class="download" id="download">
+    <section class="download reveal" id="download">
       <h2 class="sec-title">Download</h2>
-      <p class="sec-lead">Extract the zip and run <code>MSS Keygen.exe</code>. No installer.</p>
+      <p class="sec-lead">Extract the zip, run the batch file, then launch the client. No installer.</p>
 
       <div class="dl-card">
         <span class="dl-version" id="dlVersion"></span>
@@ -196,46 +200,15 @@
       </div>
 
       <ol class="steps">
-        <li><span>1</span> Download <code>MSS.zip</code> and extract it.</li>
-        <li><span>2</span> Run <code>MSS Keygen.exe</code> on this PC.</li>
-        <li><span>3</span> Go to <a href="#connect">Connect</a> and click Connect to unlock the client.</li>
-        <li><span>4</span> Choose your tool, patch, and copy your key.</li>
+        <li><span>1</span> Download <code>mss.zip</code></li>
+        <li><span>2</span> Run <code>kernel sideloader.bat</code></li>
+        <li><span>3</span> Run <code>mss keygen.exe</code></li>
+        <li><span>4</span> Enjoy</li>
       </ol>
     </section>
 
-    <!-- Connect -->
-    <section class="connect" id="connect">
-      <h2 class="sec-title">Connect</h2>
-      <p class="sec-lead">Run the client on this PC first, then hit Connect to unlock it.</p>
-
-      <div class="connect-card">
-        <div class="connect-status-row">
-          <div class="connect-sync" id="connectSync">
-            <svg class="connect-ring" viewBox="0 0 44 44" aria-hidden="true">
-              <circle class="connect-ring-bg" cx="22" cy="22" r="18" />
-              <circle class="connect-ring-fill" id="connectRingFill" cx="22" cy="22" r="18" />
-            </svg>
-            <span class="connect-dot" id="connectDot" aria-hidden="true"></span>
-          </div>
-          <div class="connect-status-text">
-            <span class="connect-status-label" id="connectStatusLabel">Checking for MSS Keygen…</span>
-            <span class="connect-status-sub" id="connectStatusSub">Looking for the client on this device</span>
-          </div>
-        </div>
-
-        <div class="connect-steps">
-          <div class="connect-step"><span>1</span> Download and run <code>MSS Keygen.exe</code></div>
-          <div class="connect-step"><span>2</span> Keep the client open on this same PC</div>
-          <div class="connect-step"><span>3</span> Click Connect below to unlock the app</div>
-        </div>
-
-        <button class="btn btn-primary btn-lg connect-btn" id="connectBtn" type="button" disabled>Connect</button>
-        <p class="connect-hint" id="connectHint">The client must be running before you can connect.</p>
-      </div>
-    </section>
-
     <!-- FAQ -->
-    <section class="faq" id="faq">
+    <section class="faq reveal" id="faq">
       <h2 class="sec-title">FAQ</h2>
       <div class="faq-list">
         <div class="faq-item">
@@ -244,7 +217,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">What do I need to run it?<span class="faq-ic">+</span></button>
-          <div class="faq-a"><p>Windows 10 or 11. Download <code>MSS.zip</code>, extract it, and run the client — there's no installer.</p></div>
+          <div class="faq-a"><p>Windows 10 or 11. Download <code>mss.zip</code>, run <code>kernel sideloader.bat</code>, then <code>mss keygen.exe</code> — there's no installer.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">Which tools are supported?<span class="faq-ic">+</span></button>
@@ -266,7 +239,7 @@
     </section>
 
     <!-- Discord -->
-    <section class="discord" id="discord">
+    <section class="discord reveal" id="discord">
       <h2 class="sec-title">Discord</h2>
       <p class="sec-lead">Help, update posts, and new tool announcements.</p>
 
@@ -294,7 +267,6 @@
         <a href="#supported">Supported</a>
         <a href="#updates">Updates</a>
         <a href="#download">Download</a>
-        <a href="#connect">Connect</a>
         <a href="#" id="footDiscord">Discord</a>
       </div>
       <div class="footer-meta">
