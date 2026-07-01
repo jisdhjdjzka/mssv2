@@ -28,7 +28,11 @@
 </head>
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="glow-top" aria-hidden="true"></div>
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Nav -->
   <header class="nav" id="nav">
@@ -40,8 +44,10 @@
         <a href="#why">Why MSS</a>
         <a href="#supported">Supported</a>
         <a href="#download">Download</a>
+        <a href="#connect">Connect</a>
         <a href="#faq">FAQ</a>
         <a href="#" id="navDiscord" class="nav-discord">Discord</a>
+        <a href="#download" class="btn btn-primary btn-nav">Download</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -63,13 +69,21 @@
         <a href="#" id="heroDiscord" class="btn btn-secondary btn-lg">Join Discord</a>
       </div>
 
+      <ul class="trust-badges reveal" aria-label="Highlights">
+        <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> No ads</li>
+        <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Keyless</li>
+        <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 10/11</li>
+      </ul>
+
       <div class="works">
         <span class="works-label">Works with</span>
-        <div class="works-logos" id="worksLogos"></div>
+        <div class="works-marquee">
+          <div class="works-track" id="worksLogos"></div>
+        </div>
       </div>
 
       <!-- client visual -->
-      <div class="client" aria-hidden="true">
+      <div class="client" id="clientDemo" aria-hidden="true">
         <div class="client-bar">
           <span class="client-dots"><i></i><i></i><i></i></span>
           <span class="client-title">MSS Keygen</span>
@@ -115,6 +129,21 @@
           <p>Support follows new tool releases, so your keys keep working.</p>
         </article>
       </div>
+
+      <div class="compare reveal">
+        <div class="compare-item">
+          <span class="compare-x">✕</span>
+          <span>Ad-filled keygens</span>
+        </div>
+        <div class="compare-item">
+          <span class="compare-x">✕</span>
+          <span>Survey walls</span>
+        </div>
+        <div class="compare-item highlight">
+          <span class="compare-check">✓</span>
+          <span>MSS — clean &amp; free</span>
+        </div>
+      </div>
     </section>
 
     <!-- Stats -->
@@ -139,6 +168,19 @@
       <h2 class="sec-title">Supported tools.</h2>
       <p class="sec-lead">Everything here is actively supported. More get added as they release.</p>
 
+      <div class="filter-tabs reveal" id="filterTabs" role="tablist" aria-label="Filter supported tools">
+        <button class="filter-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="exec">Executors</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="ext">Externals</button>
+      </div>
+
+      <div class="tool-search reveal">
+        <svg class="tool-search-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="toolSearch" class="tool-search-input" placeholder="Search tools…" autocomplete="off" aria-label="Search supported tools" />
+        <button class="tool-search-clear" id="toolSearchClear" type="button" hidden aria-label="Clear search">×</button>
+      </div>
+      <p class="tool-search-empty" id="toolSearchEmpty" hidden>No tools match your search.</p>
+
       <div class="support-groups">
         <div class="support-group reveal">
           <h3>Executors <span id="execCount"></span></h3>
@@ -151,12 +193,21 @@
       </div>
     </section>
 
+    <!-- Updates -->
+    <section class="updates" id="updates">
+      <span class="eyebrow">Changelog</span>
+      <h2 class="sec-title">What's new.</h2>
+      <p class="sec-lead">Recent updates to MSS Keygen and supported tools.</p>
+      <div class="update-list reveal" id="updateList"></div>
+    </section>
+
     <!-- Download -->
     <section class="download" id="download">
       <span class="eyebrow">Get it</span>
       <h2 class="sec-title">One download. Free.</h2>
 
       <div class="dl-card reveal">
+        <span class="dl-version" id="dlVersion"></span>
         <div class="dl-price">Free</div>
         <ul class="dl-list">
           <li>All supported tools</li>
@@ -172,11 +223,44 @@
         <span class="dl-meta">MSS.zip · ~4 MB · extract and run</span>
       </div>
 
-      <ol class="steps">
-        <li><span>1</span> Download <code>MSS.zip</code> and extract it.</li>
-        <li><span>2</span> Run the client and choose your tool.</li>
-        <li><span>3</span> Copy your key and you're set.</li>
+      <ol class="steps reveal">
+        <li class="reveal"><span>1</span> Download <code>MSS.zip</code> and extract it.</li>
+        <li class="reveal"><span>2</span> Run <code>MSS Keygen.exe</code> on this PC.</li>
+        <li class="reveal"><span>3</span> Go to <a href="#connect">Connect</a> and click Connect to unlock the client.</li>
+        <li class="reveal"><span>4</span> Choose your tool, patch, and copy your key.</li>
       </ol>
+    </section>
+
+    <!-- Connect -->
+    <section class="connect" id="connect">
+      <span class="eyebrow">Pair device</span>
+      <h2 class="sec-title">Connect your client.</h2>
+      <p class="sec-lead">Open MSS Keygen on this PC, then connect here to unlock patching and key generation.</p>
+
+      <div class="connect-card reveal">
+        <div class="connect-status-row">
+          <div class="connect-sync" id="connectSync">
+            <svg class="connect-ring" viewBox="0 0 44 44" aria-hidden="true">
+              <circle class="connect-ring-bg" cx="22" cy="22" r="18" />
+              <circle class="connect-ring-fill" id="connectRingFill" cx="22" cy="22" r="18" />
+            </svg>
+            <span class="connect-dot" id="connectDot" aria-hidden="true"></span>
+          </div>
+          <div class="connect-status-text">
+            <span class="connect-status-label" id="connectStatusLabel">Checking for MSS Keygen…</span>
+            <span class="connect-status-sub" id="connectStatusSub">Looking for the client on this device</span>
+          </div>
+        </div>
+
+        <div class="connect-steps">
+          <div class="connect-step"><span>1</span> Download and run <code>MSS Keygen.exe</code></div>
+          <div class="connect-step"><span>2</span> Keep the client open on this same PC</div>
+          <div class="connect-step"><span>3</span> Click Connect below to unlock the app</div>
+        </div>
+
+        <button class="btn btn-primary btn-lg connect-btn" id="connectBtn" type="button" disabled>Connect</button>
+        <p class="connect-hint" id="connectHint">The client must be running before you can connect.</p>
+      </div>
     </section>
 
     <!-- FAQ -->
@@ -200,6 +284,14 @@
           <button class="faq-q" aria-expanded="false">Where do I get help?<span class="faq-ic">+</span></button>
           <div class="faq-a"><p>Our Discord. Support questions and update announcements are posted there.</p></div>
         </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How often is MSS updated?<span class="faq-ic">+</span></button>
+          <div class="faq-a"><p>Whenever a supported tool releases a new version. Updates are posted in Discord and reflected in the changelog below.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Is it safe to use?<span class="faq-ic">+</span></button>
+          <div class="faq-a"><p>MSS is a small, keyless download with no ads or bundled junk. Always download from this site or our official Discord link.</p></div>
+        </div>
       </div>
     </section>
 
@@ -208,8 +300,31 @@
       <span class="eyebrow">Community</span>
       <h2 class="sec-title">Join the Discord.</h2>
       <p class="sec-lead">Support, updates, and announcements whenever new tools are added.</p>
-      <p class="discord-count" id="discordCount"></p>
-      <a href="#" id="ctaDiscord" class="btn btn-primary btn-lg">Join Discord</a>
+
+      <div class="discord-card reveal">
+        <div class="discord-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </div>
+        <div class="discord-card-body">
+          <span class="discord-card-name">MSS Keygen Community</span>
+          <p class="discord-count" id="discordCount">Loading community stats…</p>
+        </div>
+        <a href="#" id="ctaDiscord" class="btn btn-primary">Join Server</a>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-banner reveal">
+      <div class="cta-banner-inner">
+        <div class="cta-banner-text">
+          <h2>Ready to get started?</h2>
+          <p>Download MSS Keygen — free, no account, no hassle.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="#download" class="btn btn-primary btn-lg">Download now</a>
+          <a href="#" id="ctaBannerDiscord" class="btn btn-secondary btn-lg">Join Discord</a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -221,12 +336,21 @@
       <div class="footer-links">
         <a href="#why">Why MSS</a>
         <a href="#supported">Supported</a>
+        <a href="#updates">Updates</a>
         <a href="#download">Download</a>
+        <a href="#connect">Connect</a>
         <a href="#" id="footDiscord">Discord</a>
       </div>
-      <span class="footer-copy">© <span id="year"></span> MSS Keygen</span>
+      <div class="footer-meta">
+        <span class="footer-status"><span class="live-dot"></span> All systems online</span>
+        <span class="footer-copy">© <span id="year"></span> MSS Keygen</span>
+      </div>
     </div>
   </footer>
+
+  <button class="back-top" id="backTop" type="button" aria-label="Back to top" hidden>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <script src="script.js"></script>
 </body>
