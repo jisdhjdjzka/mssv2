@@ -49,7 +49,7 @@ const dlVersion = document.getElementById("dlVersion");
 if (dlVersion) dlVersion.textContent = VERSION;
 
 /* Discord links */
-document.querySelectorAll("#navDiscord, #heroDiscord, #ctaDiscord, #ctaBannerDiscord, #footDiscord").forEach((el) => {
+document.querySelectorAll("#navDiscord, #heroDiscord, #ctaDiscord, #footDiscord").forEach((el) => {
   el.href = DISCORD_URL;
   el.target = "_blank";
   el.rel = "noopener noreferrer";
@@ -325,32 +325,11 @@ function animateCounter(el, target, duration = 1200) {
   }
 })();
 
-/* Scroll progress */
-(function scrollProgress() {
-  const bar = document.getElementById("scrollProgress");
-  if (!bar) return;
-  const onScroll = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : "0%";
-  };
-  addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-})();
-
-/* Reveal on scroll */
-(function reveal() {
-  const els = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver((ents, o) => {
-    ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); o.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  els.forEach((el) => io.observe(el));
-})();
-
 /* Nav border on scroll */
 (function navBorder() {
   const nav = document.getElementById("nav");
   if (!nav) return;
-  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 4);
   onScroll();
   addEventListener("scroll", onScroll, { passive: true });
 })();
@@ -403,19 +382,6 @@ function animateCounter(el, target, duration = 1200) {
   });
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
-})();
-
-/* Subtle parallax tilt on client mockup */
-(function clientTilt() {
-  const client = document.getElementById("clientDemo");
-  if (!client || prefersReducedMotion || matchMedia("(pointer: coarse)").matches) return;
-  client.addEventListener("mousemove", (e) => {
-    const rect = client.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    client.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
-  });
-  client.addEventListener("mouseleave", () => { client.style.transform = ""; });
 })();
 
 /* Copy download link */
