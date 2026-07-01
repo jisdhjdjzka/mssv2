@@ -114,8 +114,10 @@ section[id] { scroll-margin-top: 84px; }
 .client-status { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.74rem; color: var(--green); }
 .client-body { display: grid; grid-template-columns: 170px 1fr; min-height: 260px; }
 .client-side { border-right: 1px solid var(--line); padding: 14px 0; display: flex; flex-direction: column; gap: 2px; }
-.cs-item { font-size: 0.88rem; color: var(--muted); padding: 10px 20px; border-left: 2px solid transparent; }
+.cs-item { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); background: transparent; border: none; border-left: 2px solid transparent; padding: 10px 20px; text-align: left; cursor: pointer; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+.cs-item:hover { color: var(--text); background: rgba(76,194,255,0.04); }
 .cs-item.active { color: var(--blue-2); border-left-color: var(--blue); background: rgba(76,194,255,0.06); }
+.cm-row { transition: opacity 0.2s, transform 0.2s; }
 .client-main { padding: 22px; }
 .cm-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; background: var(--bg-3); }
 .cm-row:last-child { margin-bottom: 0; }
@@ -164,6 +166,18 @@ section[id] { scroll-margin-top: 84px; }
 .dl-list li { display: flex; align-items: center; gap: 11px; color: var(--text); font-size: 0.98rem; }
 .dl-list li::before { content: ""; width: 18px; height: 18px; flex-shrink: 0; border-radius: 50%; background: rgba(95,227,154,0.15); border: 1px solid var(--green); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235fe39a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
 .dl-btn { width: 100%; }
+.btn-copy {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 10px; width: 100%;
+  background: transparent; border: 1px solid var(--line); color: var(--muted);
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+  padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.btn-copy:hover { color: var(--text); border-color: var(--line-2); background: var(--bg-3); }
+.btn-copy.copied { color: var(--green); border-color: var(--green); }
+.btn-copy.copied svg polyline, .btn-copy.copied svg rect, .btn-copy.copied svg path { display: none; }
+.btn-copy.copied::before { content: "✓"; font-size: 1rem; line-height: 1; }
 .dl-meta { display: block; margin-top: 14px; font-family: var(--mono); font-size: 0.78rem; color: var(--muted-2); }
 
 .steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; text-align: left; }

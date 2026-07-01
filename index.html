@@ -11,10 +11,15 @@
   <link rel="apple-touch-icon" href="assets/logos/main-logo.png" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="MSS Keygen" />
-  <meta property="og:description" content="Instant keys for the executors and externals our community uses. Free and always updated." />
+  <meta property="og:site_name" content="MSS Keygen" />
+  <meta property="og:title" content="MSS Keygen — free keys, instantly" />
+  <meta property="og:description" content="Instant keys for the executors and externals our community uses. Free, keyless, and always updated." />
   <meta property="og:image" content="assets/logos/main-logo.png" />
+  <meta property="og:image:alt" content="MSS Keygen logo" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MSS Keygen — free keys, instantly" />
+  <meta name="twitter:description" content="Instant keys for the executors and externals our community uses." />
+  <meta name="twitter:image" content="assets/logos/main-logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -71,11 +76,10 @@
           <span class="client-status"><span class="live-dot"></span> online</span>
         </div>
         <div class="client-body">
-          <div class="client-side">
-            <span class="cs-item active">Dashboard</span>
-            <span class="cs-item">Generate</span>
-            <span class="cs-item">Tools</span>
-            <span class="cs-item">Settings</span>
+          <div class="client-side" id="clientSide">
+            <button class="cs-item active" data-filter="all">All tools</button>
+            <button class="cs-item" data-filter="exec">Executors</button>
+            <button class="cs-item" data-filter="ext">Externals</button>
           </div>
           <div class="client-main" id="clientMain"></div>
         </div>
@@ -160,7 +164,11 @@
           <li>Instant, no key grind</li>
           <li>Windows 10 / 11</li>
         </ul>
-        <a href="https://file.garden/aizQJ_2aR3u8INCz/MSS.zip" class="btn btn-primary btn-lg dl-btn" download>Download MSS.zip</a>
+        <a href="https://file.garden/aizQJ_2aR3u8INCz/MSS.zip" class="btn btn-primary btn-lg dl-btn" id="dlBtn" download>Download MSS.zip</a>
+        <button class="btn-copy" id="copyLink" type="button" aria-label="Copy download link">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy link</span>
+        </button>
         <span class="dl-meta">MSS.zip · ~4 MB · extract and run</span>
       </div>
 

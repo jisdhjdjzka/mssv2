@@ -66,19 +66,37 @@ fill("externalsGrid", "extCount", EXTERNALS);
 const toolsCount = document.getElementById("toolsCount");
 if (toolsCount) toolsCount.textContent = EXECUTORS.length + EXTERNALS.length;
 
-/* Hero client visual — list supported tools as rows */
+/* Hero client visual — filterable list of supported tools */
 (function clientVisual() {
   const main = document.getElementById("clientMain");
+  const side = document.getElementById("clientSide");
   if (!main) return;
-  [...EXECUTORS, ...EXTERNALS].forEach((item) => {
+
+  const tagged = [
+    ...EXECUTORS.map((t) => ({ ...t, kind: "exec" })),
+    ...EXTERNALS.map((t) => ({ ...t, kind: "ext" })),
+  ];
+  tagged.forEach((item) => {
     const row = document.createElement("div");
     row.className = "cm-row";
+    row.dataset.kind = item.kind;
     const name = document.createElement("span");
     name.className = "cm-name"; name.textContent = item.name;
     const tag = document.createElement("span");
     tag.className = "cm-tag"; tag.innerHTML = '<span class="live-dot"></span> ready';
     row.append(logoEl(item, "cm-logo", "cm-fallback"), name, tag);
     main.appendChild(row);
+  });
+
+  if (!side) return;
+  side.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cs-item");
+    if (!btn) return;
+    side.querySelectorAll(".cs-item").forEach((b) => b.classList.toggle("active", b === btn));
+    const f = btn.dataset.filter;
+    main.querySelectorAll(".cm-row").forEach((row) => {
+      row.style.display = (f === "all" || row.dataset.kind === f) ? "" : "none";
+    });
   });
 })();
 
@@ -171,6 +189,39 @@ if (toolsCount) toolsCount.textContent = EXECUTORS.length + EXTERNALS.length;
       nav.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
     });
+  });
+})();
+
+/* Copy download link */
+(function copyLink() {
+  const btn = document.getElementById("copyLink");
+  const dl = document.getElementById("dlBtn");
+  if (!btn || !dl) return;
+  const label = btn.querySelector("span");
+  btn.addEventListener("click", async () => {
+    const url = dl.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      btn.classList.add("copied");
+      if (label) label.textContent = "Copied";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        if (label) label.textContent = "Copy link";
+      }, 1600);
+    } catch {
+      // fallback: select-and-copy via a temp textarea
+      const ta = document.createElement("textarea");
+      ta.value = url; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch {}
+      ta.remove();
+      btn.classList.add("copied");
+      if (label) label.textContent = "Copied";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        if (label) label.textContent = "Copy link";
+      }, 1600);
+    }
   });
 })();
 
