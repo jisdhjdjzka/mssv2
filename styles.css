@@ -61,6 +61,13 @@ section[id] { scroll-margin-top: 84px; }
 .nav-discord { color: var(--blue) !important; font-weight: 600; }
 .nav-discord.active::after { display: none; }
 
+/* mobile menu toggle */
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.22s, opacity 0.22s; }
+.nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+.nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 .logo-img-wrap { display: inline-flex; align-items: center; overflow: hidden; height: 38px; width: 62px; }
 .logo-img-wrap.small { height: 30px; width: 50px; opacity: 0.85; }
 .logo-img-main { width: 100%; height: 100%; object-fit: cover; object-position: center 56%; display: block; }
@@ -168,6 +175,19 @@ section[id] { scroll-margin-top: 84px; }
 .discord { max-width: 620px; }
 .discord-count { font-family: var(--mono); font-size: 0.88rem; color: var(--blue-2); margin: 18px 0 26px; min-height: 1.2em; }
 
+/* ---- faq ---- */
+.faq { max-width: 760px; }
+.faq-list { margin-top: 40px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-align: left; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--bg-2); border: none; color: var(--text); font-family: var(--sans); font-size: 1.02rem; font-weight: 500; text-align: left; padding: 20px 24px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.faq-q:hover { background: var(--bg-3); color: var(--blue-2); }
+.faq-ic { font-family: var(--mono); color: var(--blue); font-size: 1.4rem; line-height: 1; transition: transform 0.25s; flex-shrink: 0; }
+.faq-item.open .faq-ic { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: var(--bg); }
+.faq-a p { padding: 4px 24px 20px; color: var(--muted); }
+.faq-a code { font-family: var(--mono); color: var(--blue-2); font-size: 0.9em; }
+
 /* ---- footer ---- */
 .footer { border-top: 1px solid var(--line); }
 .footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 30px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -188,10 +208,22 @@ section[id] { scroll-margin-top: 84px; }
   .client-side { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--line); }
   .steps { grid-template-columns: 1fr; }
 }
+@media (max-width: 640px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: #000; border-bottom: 1px solid var(--line);
+    padding: 6px 0;
+    transform: translateY(-10px); opacity: 0; pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav.open .nav-links { opacity: 1; transform: none; pointer-events: auto; }
+  .nav-links a { padding: 13px 24px; }
+  .nav-links a.active::after { display: none; }
+}
 @media (max-width: 560px) {
-  .nav-links { gap: 16px; }
-  .nav-links a:not(.nav-discord) { display: none; }
-  .why, .supported, .download, .discord { padding: 64px 20px; }
+  .why, .supported, .download, .discord, .faq { padding: 64px 20px; }
   .stats { grid-template-columns: 1fr; }
   .stat { border-right: none; border-bottom: 1px solid var(--line); padding: 24px; }
   .stat:last-child { border-bottom: none; }

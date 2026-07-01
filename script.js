@@ -157,5 +157,43 @@ if (toolsCount) toolsCount.textContent = EXECUTORS.length + EXTERNALS.length;
   ids.forEach((id) => spy.observe(document.getElementById(id)));
 })();
 
+/* Mobile menu */
+(function mobileMenu() {
+  const nav = document.getElementById("nav");
+  const toggle = document.getElementById("navToggle");
+  if (!nav || !toggle) return;
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  document.querySelectorAll("#navLinks a").forEach((a) => {
+    a.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+})();
+
+/* FAQ accordion */
+(function faq() {
+  document.querySelectorAll(".faq-item .faq-q").forEach((q) => {
+    q.addEventListener("click", () => {
+      const item = q.parentElement;
+      const ans = item.querySelector(".faq-a");
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach((o) => {
+        o.classList.remove("open");
+        o.querySelector(".faq-a").style.maxHeight = null;
+        o.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        item.classList.add("open");
+        ans.style.maxHeight = ans.scrollHeight + "px";
+        q.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+})();
+
 /* Footer year */
 document.getElementById("year").textContent = new Date().getFullYear();
