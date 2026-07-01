@@ -3,8 +3,8 @@
    ============================================================ */
 
 // ---- CONFIG ----
-const DISCORD_URL = "https://discord.gg/TnHFe95MnW";
-const DISCORD_INVITE_CODE = "TnHFe95MnW";
+const DISCORD_URL = "https://discord.gg/keygen";
+const DISCORD_INVITE_CODE = "keygen";
 
 // Add a PNG to assets/logos/ matching the path, or a letter badge shows instead.
 const EXECUTORS = [
